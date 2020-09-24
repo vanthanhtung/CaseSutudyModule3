@@ -1,0 +1,8 @@
+controller/ProductServlet.java
+ controller.ProductServlet
+entities/Product.java
+ entities.Product
+Service/IService.java
+ Service.IService
+Service/Service.java
+ Service.Service
