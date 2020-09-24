@@ -13,7 +13,7 @@ public class ProductService implements IProductService {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/shoestore";
             String user = "root";
-            String password = "123456789";
+            String password = "123456";
             return DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException | SQLException e) {
             return null;
