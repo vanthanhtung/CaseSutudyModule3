@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 
 @WebServlet(name = "HomeServlet", urlPatterns = "/home")
@@ -20,11 +21,27 @@ public class HomeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        System.out.println("1");
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        try{
+            switch (action){
+                case "buy":
+                    break;
+                default:
+                    listProduct(request,response);
+                    break;
+            }
+        }
+        catch (SQLException ex){
+            throw new ServletException(ex);
+        }
+    }
+
+    private void listProduct(HttpServletRequest request,HttpServletResponse response)
+    throws SQLException,IOException,ServletException {
         List<ProductModel> products = productService.findAll();
-//        for(ProductModel product : products){
-//            System.out.println(product.getProductName());
-//        }
         request.setAttribute("products", products);
         RequestDispatcher rd = request.getRequestDispatcher("/view/home.jsp");
         rd.forward(request, response);
