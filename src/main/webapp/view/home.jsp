@@ -11,24 +11,49 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/duotone.css" integrity="sha384-R3QzTxyukP03CMqKFe0ssp5wUvBPEyy9ZspCB+Y01fEjhMwcXixTyeot+S40+AjZ" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/fontawesome.css" integrity="sha384-eHoocPgXsiuZh+Yy6+7DsKAerLXyJmu2Hadh4QYyt+8v86geixVYwFqUvMU8X90l" crossorigin="anonymous"/>
 </head>
 <body>
- <div class="container">
 
+ <div class="container">
      <div class="row" id="header">
-         <div class="card bg-dark text-white">
-             <img class="card-img" src="/image/img2.jpg" alt="Card image">
-             <div class="card-img-overlay">
-                 <h5 class="card-title">Card title</h5>
-                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                 <p class="card-text">Last updated 3 mins ago</p>
+         <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+             <!-- Indicators -->
+             <ul class="carousel-indicators">
+                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                 <li data-target="#myCarousel" data-slide-to="1"></li>
+                 <li data-target="#myCarousel" data-slide-to="2"></li>
+             </ul>
+
+             <!-- The slideshow -->
+             <div class="carousel-inner">
+                 <div class="carousel-item active">
+                     <img src="/image/adidas1.jpg" alt="Los Angeles" width="1100" height="400">
+                 </div>
+                 <div class="carousel-item">
+                     <img src="/image/vans1.jpg" alt="Chicago" width="1100" height="400">
+                 </div>
+                 <div class="carousel-item">
+                     <img src="/image/nike1.jpg" alt="New York" width="1100" height="400">
+                 </div>
              </div>
+
+             <!-- Left and right controls -->
+             <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                 <span class="carousel-control-prev-icon"></span>
+             </a>
+             <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                 <span class="carousel-control-next-icon"></span>
+             </a>
          </div>
      </div>
 
      <div class="row" id="navbar">
-         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-             <a class="navbar-brand" href="/home?action=home">Trang chủ</a>
+         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%">
+             <a class="navbar-brand" href="/home?action=home"><i class="fas fa-home"></i>Trang chủ</a>
              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                  <span class="navbar-toggler-icon"></span>
              </button>
@@ -45,6 +70,12 @@
                          <a class="nav-link" href="/home?action=vans-product">Vans</a>
                      </li>
                  </ul>
+
+                 <a class="navbar-brand" href="/home?action=cart"><i class="fas fa-cart-plus"></i>Giỏ hàng</a>
+                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                     <span class="navbar-toggler-icon"></span>
+                 </button>
+
                  <form class="form-inline my-2 my-lg-0" action="/home?action=search" method="post">
                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchProductName">
                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -81,11 +112,13 @@
                      <div class="col-md-6 mt-md-0 mt-3">
 
                          <!-- Content -->
-                         <h5 class="text-uppercase font-weight-bold">Footer text 1</h5>
-                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla, nihil
-                             repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam recusandae
-                             harum esse fugiat. Itaque, culpa?</p>
-
+                         <h5 class="text-uppercase font-weight-bold">Hệ thống cửa hàng</h5>
+                         <p>Cơ sở 1: 115 Lô TT04, Khu đô thị Moncity, Mỹ Đình, Từ Liêm, Hà Nội</p>
+                         <p>SĐT 0999 999 999</p>
+                         <p>Cơ sở 2: 69 Lê Duẩn, TP. Đà Nẵng</p>
+                         <p>SĐT 0969 123 456</p>
+                         <p>Cơ sở 3: 96 Quận 1, TP. Hồ Chí Minh</p>
+                         <p>SĐT 0127 555 555</p>
                      </div>
                      <!-- Grid column -->
 
@@ -120,6 +153,10 @@
      </div>
 
  </div>
+
 </body>
 </html>
 <script src="/css/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

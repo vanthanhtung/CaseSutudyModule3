@@ -52,6 +52,9 @@ public class HomeServlet extends HttpServlet {
                 case "vans-product":
                     listProductByCategory(request, response, 3);
                     break;
+                case "cart":
+                    showCart(request,response);
+                    break;
                 default:
                     listProduct(request,response);
                     break;
