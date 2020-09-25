@@ -1,7 +1,7 @@
 com/shoestore/service/ICartProductService.java
  com.shoestore.service.ICartProductService
-com/shoestore/controller/HomeServlet.java
- com.shoestore.controller.HomeServlet
+com/shoestore/model/CategoryModel.java
+ com.shoestore.model.CategoryModel
 com/shoestore/service/ICategoryService.java
  com.shoestore.service.ICategoryService
 com/shoestore/service/impl/ProductService.java
@@ -22,5 +22,5 @@ com/shoestore/model/CartProduct.java
  com.shoestore.model.CartProduct
 com/shoestore/model/ProductModel.java
  com.shoestore.model.ProductModel
-com/shoestore/model/CategoryModel.java
- com.shoestore.model.CategoryModel
+com/shoestore/controller/HomeServlet.java
+ com.shoestore.controller.HomeServlet

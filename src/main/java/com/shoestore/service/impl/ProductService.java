@@ -13,7 +13,7 @@ public class ProductService implements IProductService {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/shoestore";
             String user = "root";
-            String password = "123456";
+            String password = "123456789";
             return DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException | SQLException e) {
             return null;
@@ -57,6 +57,89 @@ public class ProductService implements IProductService {
                 }
             }catch (SQLException e){
                 e.getLocalizedMessage();
+            }
+        }
+    }
+
+    @Override
+    public List<ProductModel> findByCategory(int id) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM product WHERE category_id = ?";
+        List<ProductModel> lists = new ArrayList<>();
+        try{
+            connection = getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            rs = statement.executeQuery();
+            while (rs.next()){
+                int newId = rs.getInt(1);
+                String productName = rs.getString(2);
+                float price = rs.getFloat(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                int categoryId = rs.getInt(6);
+                lists.add(new ProductModel(newId, productName,price,description,thumbnail,categoryId));
+            }
+            return lists;
+        }catch (SQLException e){
+            e.getMessage();
+            return null;
+        }finally {
+            try{
+                if(connection != null){
+                    connection.close();
+                }
+                if(statement != null){
+                    connection.close();
+                } if(rs != null){
+                    connection.close();
+                }
+            }catch (SQLException e2){
+                e2.getMessage();
+            }
+        }
+    }
+
+    @Override
+    public List<ProductModel> findByName(String productName) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM product WHERE product_name LIKE ?";
+        List<ProductModel> lists = new ArrayList<>();
+        try{
+            connection = getConnection();
+            statement = connection.prepareStatement(sql);
+            String str = "%" + productName + "%";
+            statement.setString(1, str);
+            rs = statement.executeQuery();
+            while (rs.next()){
+                int newId = rs.getInt(1);
+                String product_name = rs.getString(2);
+                float price = rs.getFloat(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                int categoryId = rs.getInt(6);
+                lists.add(new ProductModel(newId, product_name,price,description,thumbnail,categoryId));
+            }
+            return lists;
+        }catch (SQLException e){
+            e.getMessage();
+            return null;
+        }finally {
+            try{
+                if(connection != null){
+                    connection.close();
+                }
+                if(statement != null){
+                    connection.close();
+                } if(rs != null){
+                    connection.close();
+                }
+            }catch (SQLException e2){
+                e2.getMessage();
             }
         }
     }

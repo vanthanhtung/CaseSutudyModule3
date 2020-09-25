@@ -1,4 +1,7 @@
 package com.shoestore.service.impl;
 
-public class CategoryService {
+import com.shoestore.service.ICategoryService;
+
+public class CategoryService implements ICategoryService {
+
 }
