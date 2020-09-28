@@ -92,7 +92,7 @@
                  <h5 class="card-title">${product.productName}</h5>
                  <h5 class="card-title">Price $${product.price}</h5>
                  <p class="card-text">${product.description}</p>
-                 <a href="#" class="btn btn-primary">Add to cart</a>
+                 <a href="/home?action=addToCart&id=${product.id}" class="btn btn-primary" methods="post">Add to cart</a>
              </div>
          </c:forEach>
 

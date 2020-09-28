@@ -71,7 +71,7 @@
                      </li>
                  </ul>
 
-                 <a class="navbar-brand" href="/home?action=home"><i class="fas fa-cart-plus"></i>Giỏ hàng</a>
+                 <a class="navbar-brand" href="/home?action=cart"><i class="fas fa-cart-plus"></i>Giỏ hàng</a>
                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                      <span class="navbar-toggler-icon"></span>
                  </button>
@@ -92,7 +92,7 @@
                  <h5 class="card-title">${product.productName}</h5>
                  <h5 class="card-title">Price $${product.price}</h5>
                  <p class="card-text">${product.description}</p>
-                 <a href="#" class="btn btn-primary">Add to cart</a>
+                 <a href="/home?action=addToCart&id=${product.id}" class="btn btn-primary" methods="post">Add to cart</a>
              </div>
          </c:forEach>
 

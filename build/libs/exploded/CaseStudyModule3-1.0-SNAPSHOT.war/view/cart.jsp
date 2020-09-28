@@ -6,13 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/duotone.css" integrity="sha384-R3QzTxyukP03CMqKFe0ssp5wUvBPEyy9ZspCB+Y01fEjhMwcXixTyeot+S40+AjZ" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/fontawesome.css" integrity="sha384-eHoocPgXsiuZh+Yy6+7DsKAerLXyJmu2Hadh4QYyt+8v86geixVYwFqUvMU8X90l" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/duotone.css"
+          integrity="sha384-R3QzTxyukP03CMqKFe0ssp5wUvBPEyy9ZspCB+Y01fEjhMwcXixTyeot+S40+AjZ" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/fontawesome.css"
+          integrity="sha384-eHoocPgXsiuZh+Yy6+7DsKAerLXyJmu2Hadh4QYyt+8v86geixVYwFqUvMU8X90l" crossorigin="anonymous"/>
 </head>
 <body>
 
@@ -54,7 +58,8 @@
     <div class="row" id="navbar">
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%">
             <a class="navbar-brand" href="/home?action=home"><i class="fas fa-home"></i>Trang chủ</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -72,12 +77,15 @@
                 </ul>
 
                 <a class="navbar-brand" href="/home?action=home"><i class="fas fa-cart-plus"></i>Giỏ hàng</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <form class="form-inline my-2 my-lg-0" action="/home?action=search" method="post">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchProductName">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                           name="searchProductName">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
@@ -85,37 +93,42 @@
     </div>
 
     <div class="row" id="body">
-        <c:forEach var="product" items="${products}">
 
-            <table class="table table-hover table-bordered">
-                <thead>
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>Img</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="item" items="${listOrder}" varStatus="loop">
                 <tr>
-                    <th>Img</th>
-                    <th>Name</th>
-                    <th>Amount</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                    <th>Delete</th>
+                    <td><img src="${item.thumbnail}" class="card-img-top" alt style="width: 250px"></td>
+                    <td>${item.productName}</td>
+                    <td>
+                        <input type="text" name="amount" placeholder="Enter amount">
+                    </td>
+                    <td>${item.price}</td>
+                    <td></td>
+                    <td>
+                        <a class="btn btn-danger" href="productController?action=delete&id=${item.id}">Delete</a>
+                    </td>
                 </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="item" items="${products}" varStatus="loop">
-                    <tr>
-                        <td>${product.thumbnail}</td>
-                        <td>${product.name}</td>
-                        <td>${product.price}</td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a class="btn btn-danger" href="productController?action=delete&id=${item.id}">Delete</a>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </c:forEach>
-
-    </div> <hr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col"><input type="text" style="width: 100%" name="customerInfo" placeholder="Enter your information"></div>
+        <div class="col"><a class="btn btn-danger" style="position: relative; right: 0px"
+                            href="productController?action=delete&id=${item.id}">BUY</a></div>
+    </div>
+    <hr>
 
     <div class="row" id="footer">
         <!-- Footer -->
@@ -148,8 +161,10 @@
 
                         <!-- Content -->
                         <h5 class="text-uppercase font-weight-bold">Footer text 2</h5>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi earum
-                            commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam, aspernatur id
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis
+                            modi earum
+                            commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam,
+                            aspernatur id
                             excepturi hic.</p>
 
                     </div>
@@ -177,6 +192,12 @@
 </body>
 </html>
 <script src="/css/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>

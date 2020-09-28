@@ -143,4 +143,46 @@ public class ProductService implements IProductService {
             }
         }
     }
+
+    @Override
+    public ProductModel findById(int id) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM product WHERE id = ?";
+        try{
+            connection = getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            rs = statement.executeQuery();
+
+            while (rs.next()) {
+                int newId = rs.getInt(1);
+                String product_name = rs.getString(2);
+                float price = rs.getFloat(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                int categoryId = rs.getInt(6);
+                return new ProductModel(newId, product_name,price,description,thumbnail,categoryId);
+            }
+
+        }catch (SQLException e){
+            e.getMessage();
+            return null;
+        }finally {
+            try{
+                if(connection != null){
+                    connection.close();
+                }
+                if(statement != null){
+                    connection.close();
+                } if(rs != null){
+                    connection.close();
+                }
+            }catch (SQLException e2){
+                e2.getMessage();
+            }
+        }
+        return null;
+    }
 }

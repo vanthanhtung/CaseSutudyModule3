@@ -7,4 +7,5 @@ public interface IProductService {
     List<ProductModel> findAll();
     List<ProductModel> findByCategory(int id);
     List<ProductModel> findByName(String productName);
+    ProductModel findById(int id);
 }
