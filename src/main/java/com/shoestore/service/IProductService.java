@@ -1,11 +1,11 @@
 package com.shoestore.service;
-import com.shoestore.model.ProductModel;
+import com.shoestore.model.Product;
 
 import java.util.*;
 
 public interface IProductService {
-    List<ProductModel> findAll();
-    List<ProductModel> findByCategory(int id);
-    List<ProductModel> findByName(String productName);
-    ProductModel findById(int id);
+    List<Product> findAll();
+    List<Product> findByCategory(int id);
+    List<Product> findByName(String productName);
+    Product findById(int id);
 }

@@ -1,6 +1,6 @@
 package com.shoestore.service.impl;
 
-import com.shoestore.model.ProductModel;
+import com.shoestore.model.Product;
 import com.shoestore.service.IProductService;
 
 import java.sql.*;
@@ -21,8 +21,8 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<ProductModel> findAll() {
-        List<ProductModel> lists = new ArrayList<>();
+    public List<Product> findAll() {
+        List<Product> lists = new ArrayList<>();
         String sql = "SELECT * FROM product";
         Connection connection = null;
         PreparedStatement statement = null;
@@ -38,7 +38,7 @@ public class ProductService implements IProductService {
                 String description = rs.getString(4);
                 String thumbnail = rs.getString(5);
                 int categoryId = rs.getInt(6);
-                lists.add(new ProductModel(id, productName, price, description, thumbnail, categoryId));
+                lists.add(new Product(id, productName, price, description, thumbnail, categoryId));
             }
             return lists;
         }catch (SQLException e){
@@ -62,12 +62,12 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<ProductModel> findByCategory(int id) {
+    public List<Product> findByCategory(int id) {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet rs = null;
         String sql = "SELECT * FROM product WHERE category_id = ?";
-        List<ProductModel> lists = new ArrayList<>();
+        List<Product> lists = new ArrayList<>();
         try{
             connection = getConnection();
             statement = connection.prepareStatement(sql);
@@ -80,7 +80,7 @@ public class ProductService implements IProductService {
                 String description = rs.getString(4);
                 String thumbnail = rs.getString(5);
                 int categoryId = rs.getInt(6);
-                lists.add(new ProductModel(newId, productName,price,description,thumbnail,categoryId));
+                lists.add(new Product(newId, productName,price,description,thumbnail,categoryId));
             }
             return lists;
         }catch (SQLException e){
@@ -103,12 +103,12 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<ProductModel> findByName(String productName) {
+    public List<Product> findByName(String productName) {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet rs = null;
         String sql = "SELECT * FROM product WHERE product_name LIKE ?";
-        List<ProductModel> lists = new ArrayList<>();
+        List<Product> lists = new ArrayList<>();
         try{
             connection = getConnection();
             statement = connection.prepareStatement(sql);
@@ -122,7 +122,7 @@ public class ProductService implements IProductService {
                 String description = rs.getString(4);
                 String thumbnail = rs.getString(5);
                 int categoryId = rs.getInt(6);
-                lists.add(new ProductModel(newId, product_name,price,description,thumbnail,categoryId));
+                lists.add(new Product(newId, product_name,price,description,thumbnail,categoryId));
             }
             return lists;
         }catch (SQLException e){
@@ -145,7 +145,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public ProductModel findById(int id) {
+    public Product findById(int id) {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet rs = null;
@@ -163,7 +163,7 @@ public class ProductService implements IProductService {
                 String description = rs.getString(4);
                 String thumbnail = rs.getString(5);
                 int categoryId = rs.getInt(6);
-                return new ProductModel(newId, product_name,price,description,thumbnail,categoryId);
+                return new Product(newId, product_name,price,description,thumbnail,categoryId);
             }
 
         }catch (SQLException e){
@@ -185,4 +185,5 @@ public class ProductService implements IProductService {
         }
         return null;
     }
+
 }

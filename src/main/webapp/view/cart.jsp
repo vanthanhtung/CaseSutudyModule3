@@ -111,12 +111,16 @@
                     <td><img src="${item.thumbnail}" class="card-img-top" alt style="width: 250px"></td>
                     <td>${item.productName}</td>
                     <td>
-                        <input type="text" name="amount" placeholder="Enter amount">
+                        <form class="form-inline my-2 my-lg-0" action="/cart?action=addOrderproduct" method="post">
+                            <input class="form-control mr-sm-2" type="search" placeholder="input amount" aria-label="Search"
+                                   name="amount">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit Amount</button>
+                        </form>
                     </td>
                     <td>${item.price}</td>
-                    <td>${item.price} * </td>
+                    <td></td>
                     <td>
-                        <a class="btn btn-danger" href="productController?action=delete&id=${item.id}">Delete</a>
+                        <a class="btn btn-danger" href="/cart?action=delete&id=${item.id}">Delete</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -124,9 +128,14 @@
         </table>
     </div>
     <div class="row">
-        <div class="col"><input type="text" style="width: 100%" name="customerInfo" placeholder="Enter your information"></div>
-        <div class="col"><a class="btn btn-danger" style="position: relative; right: 0px"
-                            href="productController?action=delete&id=${item.id}">BUY</a></div>
+<%--        <div class="col"><input type="text" style="width: 100%" name="customerInfo" placeholder="Enter your information"></div>--%>
+<%--        <div class="col"><a class="btn btn-danger" style="position: relative; right: 0px"--%>
+<%--                            href="/cart?action=buy">BUY</a></div>--%>
+    <form class="form-inline my-2 my-lg-0" action="/cart?action=buy" method="post">
+        <input class="form-control mr-sm-2" type="search" placeholder="Enter your infomation" aria-label="Search"
+               name="customerInfo">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buy</button>
+    </form>
     </div>
     <hr>
 

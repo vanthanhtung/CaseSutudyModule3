@@ -1,7 +1,7 @@
 package com.shoestore.controller;
 
-import com.shoestore.model.OrderModel;
-import com.shoestore.model.ProductModel;
+import com.shoestore.model.Order;
+import com.shoestore.model.Product;
 import com.shoestore.service.impl.OrderService;
 import com.shoestore.service.impl.ProductService;
 
@@ -57,9 +57,6 @@ public class HomeServlet extends HttpServlet {
                 case "vans-product":
                     listProductByCategory(request, response, 3);
                     break;
-                case "cart":
-                    showCart(request,response);
-                    break;
                 case "addToCart":
                     addToCart(request,response);
                     break;
@@ -75,7 +72,7 @@ public class HomeServlet extends HttpServlet {
 
     private void listProduct(HttpServletRequest request,HttpServletResponse response)
     throws SQLException,IOException,ServletException {
-        List<ProductModel> products = productService.findAll();
+        List<Product> products = productService.findAll();
         request.setAttribute("products", products);
 //        cartService.removeCartByStatus(0);
 //        int idCart = cartService.addNewCart();
@@ -89,7 +86,7 @@ public class HomeServlet extends HttpServlet {
 
     private void listProductByCategory(HttpServletRequest request,HttpServletResponse response, int id)
             throws SQLException,IOException,ServletException {
-        List<ProductModel> products = productService.findByCategory(id);
+        List<Product> products = productService.findByCategory(id);
         request.setAttribute("products", products);
         RequestDispatcher rd = request.getRequestDispatcher("/view/home.jsp");
         rd.forward(request, response);
@@ -97,46 +94,46 @@ public class HomeServlet extends HttpServlet {
 
     private void searchByName(HttpServletRequest request,HttpServletResponse response)
             throws SQLException,IOException,ServletException {
-        List<ProductModel> products = productService.findByName(request.getParameter("searchProductName"));
+        List<Product> products = productService.findByName(request.getParameter("searchProductName"));
         request.setAttribute("products", products);
         RequestDispatcher rd = request.getRequestDispatcher("/view/home.jsp");
         rd.forward(request, response);
     }
 
-    private void showCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        OrderModel order = (OrderModel) session.getAttribute("order");
-        List<ProductModel> listProducts = order.getListProducts();
-        request.setAttribute("listOrder", listProducts);
-        RequestDispatcher rd = request.getRequestDispatcher("/view/cart.jsp");
-        rd.forward(request, response);
-    }
+//    private void showCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        HttpSession session = request.getSession();
+//        OrderModel order = (OrderModel) session.getAttribute("order");
+//        List<ProductModel> listProducts = order.getListProducts();
+//        request.setAttribute("listOrder", listProducts);
+//        RequestDispatcher rd = request.getRequestDispatcher("/view/cart.jsp");
+//        rd.forward(request, response);
+//    }
 
     private void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int productId = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
         if(session.getAttribute("order") == null){
-            OrderModel order = new OrderModel();
-            List<ProductModel> listProduct = new ArrayList<ProductModel>();
+            Order order = new Order();
+            List<Product> listProduct = new ArrayList<Product>();
             listProduct.add(productService.findById(productId));
             order.setListProducts(listProduct);
             session.setAttribute("order", order);
         }else {
-            OrderModel order = (OrderModel) session.getAttribute("order");
-            List<ProductModel> listIdProduct = order.getListProducts();
-            boolean checkContain = true;
-            for(ProductModel product : listIdProduct){
+            Order order = (Order) session.getAttribute("order");
+            List<Product> listIdProduct = order.getListProducts();
+            boolean checkContain = false;
+            for(Product product : listIdProduct){
                 if(product.getId() == productId){
-                    checkContain = false;
+                    checkContain = true;
                 }
             }
-            if(checkContain){
+            if(checkContain == false){
                 listIdProduct.add(productService.findById(productId));
             }
             //session.setAttribute("order", order);
         }
 
-        List<ProductModel> products = productService.findAll();
+        List<Product> products = productService.findAll();
         request.setAttribute("products", products);
         RequestDispatcher rd = request.getRequestDispatcher("/view/home.jsp");
         rd.forward(request, response);
