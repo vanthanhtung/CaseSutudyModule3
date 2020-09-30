@@ -1,9 +1,13 @@
-com/shoestore/model/CategoryModel.java
- com.shoestore.model.CategoryModel
-com/shoestore/model/OrderModel.java
- com.shoestore.model.OrderModel
 com/shoestore/service/IOrderService.java
  com.shoestore.service.IOrderService
+com/shoestore/model/ProductOrder.java
+ com.shoestore.model.ProductOrder
+com/shoestore/controller/CartServlet.java
+ com.shoestore.controller.CartServlet
+com/shoestore/model/Product.java
+ com.shoestore.model.Product
+com/shoestore/model/Order.java
+ com.shoestore.model.Order
 com/shoestore/controller/HomeServlet.java
  com.shoestore.controller.HomeServlet
 com/shoestore/service/ICategoryService.java
@@ -12,11 +16,9 @@ com/shoestore/service/impl/ProductService.java
  com.shoestore.service.impl.ProductService
 com/shoestore/service/IProductService.java
  com.shoestore.service.IProductService
-com/shoestore/model/ProductModel.java
- com.shoestore.model.ProductModel
+com/shoestore/model/Category.java
+ com.shoestore.model.Category
 com/shoestore/service/impl/CategoryService.java
  com.shoestore.service.impl.CategoryService
 com/shoestore/service/impl/OrderService.java
  com.shoestore.service.impl.OrderService
-com/shoestore/controller/CartServlet.java
- com.shoestore.controller.CartServlet
